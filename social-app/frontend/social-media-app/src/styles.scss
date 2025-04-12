@@ -1,0 +1,178 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #6200ea;
+  --primary-light: #9d46ff;
+  --primary-dark: #0a00b6;
+  --secondary-color: #00bcd4;
+  --secondary-light: #62efff;
+  --secondary-dark: #008ba3;
+  --text-color: #263238;
+  --text-light: #546e7a;
+  --light-text: #fff;
+  --bg-color: #f5f7fa;
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --success-color: #4caf50;
+  --warning-color: #ff9800;
+  --error-color: #f44336;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  background-image: url("./assets/images/imagesport.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
+  z-index: -1;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 25px;
+  margin-bottom: 25px;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(98, 0, 234, 0.3);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+
+  &:hover {
+    color: var(--primary-light);
+  }
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    box-shadow: 0 0 0 3px rgba(98, 0, 234, 0.1);
+  }
+
+  &.is-invalid {
+    border-color: var(--error-color);
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+    }
+  }
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-3 {
+  margin-top: 15px;
+}
+
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+.alert {
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  &.alert-danger {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--error-color);
+    border-left: 4px solid var(--error-color);
+  }
+
+  &.alert-success {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success-color);
+    border-left: 4px solid var(--success-color);
+  }
+}
