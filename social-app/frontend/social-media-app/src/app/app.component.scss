@@ -4,62 +4,8 @@
   flex-direction: column;
 }
 
-.app-header {
-  background: #6a11cb;
-  color: white;
-  padding: 1rem 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  h1 {
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-}
-
-.nav-links {
-  display: flex;
-  gap: 2rem;
-
-  a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background: #5910a7;
-    }
-
-    &.active {
-      background: #500d96;
-    }
-  }
-}
-
 .main-content {
   flex: 1;
-  margin-top: 64px; // Height of the fixed header
   position: relative;
 }
 

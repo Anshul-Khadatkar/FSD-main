@@ -14,6 +14,22 @@ import { CommonModule } from '@angular/common';
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
+  styles: [
+    `
+      :host {
+        display: block;
+        background: #f5f5f5 !important;
+        background-image: none !important;
+        min-height: 100vh;
+      }
+
+      :host::ng-deep body,
+      :host::ng-deep html {
+        background: #f5f5f5 !important;
+        background-image: none !important;
+      }
+    `,
+  ],
 })
 export class FormComponent implements OnInit {
   registrationForm!: FormGroup;
@@ -29,15 +45,42 @@ export class FormComponent implements OnInit {
   ];
   types = ['Internal', 'External'];
 
+  eventNames = [
+    'Cricket Tournament',
+    'Basketball Championship',
+    'Football League',
+    'Swimming Competition',
+    'Tennis Championship',
+    'Badminton Tournament',
+    'Table Tennis Competition',
+    'Chess Tournament',
+    'Athletics Meet',
+    'Volleyball Tournament',
+  ];
+
+  departments = [
+    'Computer Science Engineering',
+    'Information Technology',
+    'Electronics & Communication',
+    'Electrical Engineering',
+    'Mechanical Engineering',
+    'Civil Engineering',
+    'Chemical Engineering',
+    'Biotechnology',
+    'Aeronautical Engineering',
+    'Applied Sciences',
+    'Management Studies',
+  ];
+
   // Mock data for testing
   private mockData = {
     testUser: {
-      name: 'Test User',
+      name: 'Anshul',
     },
     participantId: 'P2024001',
   };
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(private fb: FormBuilder, public router: Router) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -49,7 +92,7 @@ export class FormComponent implements OnInit {
       pId: [{ value: this.mockData.participantId, disabled: true }],
       referralSource: ['', Validators.required],
       type: ['', Validators.required],
-      age: ['', [Validators.required, Validators.min(1), Validators.max(120)]],
+      age: ['', [Validators.required, Validators.min(15), Validators.max(120)]],
       gender: ['', Validators.required],
       eventName: ['', Validators.required],
       department: ['', Validators.required],
@@ -65,7 +108,13 @@ export class FormComponent implements OnInit {
     this.isSubmitting = true;
     console.log('Form submitted:', this.registrationForm.value);
 
-    // Navigate to success page
-    this.router.navigate(['/success']);
+    // Navigate to success page after 1 second to simulate API call
+    setTimeout(() => {
+      this.router.navigate(['/success']);
+    }, 1000);
+  }
+
+  navigateBack(): void {
+    this.router.navigate(['/dashboard']);
   }
 }

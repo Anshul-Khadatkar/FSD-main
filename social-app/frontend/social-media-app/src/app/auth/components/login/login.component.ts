@@ -29,13 +29,17 @@ export class LoginComponent implements OnInit {
 
   private initForm(): void {
     this.loginForm = this.fb.group({
-      userId: ['', Validators.required],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
-  get userId() {
-    return this.loginForm.get('userId');
+  get username() {
+    return this.loginForm.get('username');
+  }
+
+  get formControls() {
+    return this.loginForm.controls;
   }
 
   get password() {
@@ -47,21 +51,26 @@ export class LoginComponent implements OnInit {
       this.isSubmitting = true;
       this.errorMessage = '';
 
-      const { userId, password } = this.loginForm.value;
+      const { username, password } = this.loginForm.value;
 
-      // Mock authentication logic
-      if (
-        userId === environment.testUser.userId &&
-        password === environment.testUser.password
-      ) {
-        // Successful login
-        localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(['/form']);
-      } else {
-        this.errorMessage = 'Invalid credentials. Please try again.';
-      }
+      // Use test data from environment
+      setTimeout(() => {
+        if (
+          username === environment.testUser.userId &&
+          password === environment.testUser.password
+        ) {
+          // Store user data in localStorage for use in dashboard
+          localStorage.setItem('username', username);
+          localStorage.setItem('isLoggedIn', 'true');
+          localStorage.setItem('userName', environment.testUser.name);
 
-      this.isSubmitting = false;
+          // Navigate to dashboard
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.errorMessage = 'Invalid username or password. Please try again.';
+          this.isSubmitting = false;
+        }
+      }, 1000); // Simulate network delay
     }
   }
 }

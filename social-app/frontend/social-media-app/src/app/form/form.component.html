@@ -83,7 +83,7 @@
           id="age"
           formControlName="age"
           class="form-control"
-          min="1"
+          min="15"
           max="120"
         />
         <div
@@ -93,7 +93,7 @@
           "
           class="error-message"
         >
-          <small>Age is required and must be between 1 and 120</small>
+          <small>Age is required and must be 15 or older</small>
         </div>
       </div>
 
@@ -103,15 +103,15 @@
         <div class="radio-group">
           <label class="radio-label">
             <input type="radio" formControlName="gender" value="Male" />
-            Male
+            <span>Male</span>
           </label>
           <label class="radio-label">
             <input type="radio" formControlName="gender" value="Female" />
-            Female
+            <span>Female</span>
           </label>
           <label class="radio-label">
             <input type="radio" formControlName="gender" value="Other" />
-            Other
+            <span>Other</span>
           </label>
         </div>
         <div
@@ -125,15 +125,15 @@
         </div>
       </div>
 
-      <!-- Event Name Field -->
+      <!-- Event Name Dropdown -->
       <div class="form-group">
         <label for="eventName">Event Name</label>
-        <input
-          type="text"
-          id="eventName"
-          formControlName="eventName"
-          class="form-control"
-        />
+        <select id="eventName" formControlName="eventName" class="form-control">
+          <option value="">Select Event</option>
+          <option *ngFor="let event of eventNames" [value]="event">
+            {{ event }}
+          </option>
+        </select>
         <div
           *ngIf="
             registrationForm.get('eventName')?.invalid &&
@@ -141,19 +141,23 @@
           "
           class="error-message"
         >
-          <small>Event name is required</small>
+          <small>Event selection is required</small>
         </div>
       </div>
 
-      <!-- Department Field -->
+      <!-- Department Dropdown -->
       <div class="form-group">
         <label for="department">Department</label>
-        <input
-          type="text"
+        <select
           id="department"
           formControlName="department"
           class="form-control"
-        />
+        >
+          <option value="">Select Department</option>
+          <option *ngFor="let dept of departments" [value]="dept">
+            {{ dept }}
+          </option>
+        </select>
         <div
           *ngIf="
             registrationForm.get('department')?.invalid &&
@@ -161,7 +165,7 @@
           "
           class="error-message"
         >
-          <small>Department is required</small>
+          <small>Department selection is required</small>
         </div>
       </div>
 
@@ -173,6 +177,7 @@
           formControlName="medicalCondition"
           class="form-control"
           rows="3"
+          placeholder="Please mention any medical conditions (if applicable)"
         ></textarea>
       </div>
 
